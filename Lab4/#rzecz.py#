@@ -1,0 +1,7 @@
+pt = []
+pt.append([1])
+currentline = [pt[0]]
+for i in range(1, 6):
+    newline = [1]
+    for j in range(1, len(currentline)):
+        newline.append(currentline[j - 1] 
