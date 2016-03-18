@@ -13,6 +13,7 @@ class RankFinder:
         self.binomials = self.pascal_triangle()
 
     def pascal_triangle(self):
+        # zwraca listę kolejnych wierszy trójkąta Pascala
         pt = []
         pt.append([1])
         currentline = [pt[0]]
@@ -26,14 +27,16 @@ class RankFinder:
         return pt
 
     def binomial(self, n, k):
+        # wyznacza z trójkąta Pascala współczynnik dwumianowy C(n, k)
         return self.binomials[n][k]
 
     def rank(self):
+        # wyznacza rangę ze wzoru
         rank = 0
         subset = []
         for element in self.subset:
             subset.append(int(element))
-        subset.insert(0,0)
+        subset.insert(0,0) #  zakładamy t_0 = 0
         for i in range(1, self.k+1):
             for j in range(subset[i - 1] + 1, subset[i]):
                 rank += self.binomial(self.n - j, self.k - i)

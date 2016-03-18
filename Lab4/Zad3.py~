@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+
+# Napisz program wyznaczający podzbiór T o randze r w uporządkowaniu
+# leksykograficznym k-elementowych podzbiorów zbioru {1,...,n}.
+
+
+class SubsetFinder:
+
+    def __init__(self, n, k, r):
+        self.n = n
+        self.k = k
+        self.rank = r
+        self.binomials = self.pascal_triangle()
+
+    def pascal_triangle(self):
+        pt = []
+        pt.append([1])
+        currentline = [pt[0]]
+        for i in range(1, self.n):
+            newline = [1]
+            for j in range(1, len(currentline)):
+                newline.append(currentline[j - 1] + currentline[j])
+            newline.append(1)
+            pt.append(newline)
+            currentline = newline
+        return pt
+
+    def binomial(self, n, k):
+        return self.binomials[n][k]
+
+    def unrank(self):
+        r = self.rank
+        subset = []
+        candidate = 1
+        for i in range(1, self.k + 1):
+            binomial = self.binomial(self.n - candidate, self.k - i)
+            while (r <= binomial):
+                r -= binomial
+                candidate += 1
+            subset.append(candidate)
+            candidate += 1
+        return subset
+
+class Main:
+
+    n = int(raw_input("Podaj n: \n"))
+    k = int(raw_input("Podaj k: \n"))
+    r = int(raw_input("Podaj r: \n"))
+    sf = SubsetFinder(n, k, r)
+    print sf.unrank()
