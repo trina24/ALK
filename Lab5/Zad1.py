@@ -24,7 +24,7 @@ class Successor:
             return 'Brak następnika'
         else:
         # w przeciwnym wypadku zwiększamy bieżący element
-        # i najmniejsze możliwe liczby na prawo
+        # i wstawiamy najmniejsze możliwe liczby na prawo
             vector[counter] += 1
             for i in range(counter + 1, len(vector)):
                 vector[i] = self.k - i + 1
