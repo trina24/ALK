@@ -28,7 +28,10 @@ class SubsetFinder:
 
     def binomial(self, n, k):
         # wyznacza z trójkąta Pascala współczynnik dwumianowy C(n, k)
-        return self.binomials[n][k]
+        if (n >= k):
+            return self.binomials[n][k]
+        else:
+            return 0
 
     def unrank(self):
         # wyznacza podzbiór na podstawie rangi
@@ -36,15 +39,10 @@ class SubsetFinder:
         subset = []
         candidate = self.n
         for i in range(self.k):
-            while (self.binomial(candidate, self.k - i) > r and candidate > 0):
+            while (self.binomial(candidate, self.k - i) > r):
                 candidate -= 1
-                if (candidate < self.k - i):
-                    break
             subset.append(candidate + 1)
-            if (candidate >= self.k - i):
-                r -= self.binomial(candidate, self.k - i)
-            else:
-                break
+            r -= self.binomial(candidate, self.k - i)
         return subset
     
 class Main:
