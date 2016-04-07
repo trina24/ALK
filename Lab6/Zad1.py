@@ -54,9 +54,12 @@ class Generator:
 
     def generate(self):
         vector = self.vector
-        while (len(vector) > 0):
-            print vector
-            vector = self.successor(vector)
+        print vector
+        if (self.n != self.k):
+            while (len(vector) > 0):
+                vector = self.successor(vector)
+                if (len(vector) > 0):
+                    print vector
 
 class Main:
 
