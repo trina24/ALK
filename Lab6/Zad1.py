@@ -26,9 +26,9 @@ class Generator:
         # jeżeli ciąg jest postaci 1, 2, ..., k - 1, n, to koniec
         if (j == self.k and vector[self.k - 1] == self.n):
             return []
-        # jeżeli różnica k - j jest nieparzysta, to zwiększamy dwie
-        # pozycje leżące możliwie najdalej na prawo (lub tylko
-        # pierwszy element)
+        # jeżeli różnica k - j jest nieparzysta, to zwiększamy dwa
+        # ostatnie elementy z tych, których nie dałoby się zmniejszyć
+        # lub, jeśli takich nie ma, zmniejszamy pierwszy
         elif ((self.k - j) % 2 == 1):
             if (j == 1):
                 vector[0] -= 1
