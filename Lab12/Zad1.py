@@ -31,14 +31,14 @@ class Prufer:
     def min_degree_greatest(self, nl):
         min_vertices = []
         for i in range(len(nl)):
-            if (len(nl[i]) == 1):
+            if (nl[i] != None and len(nl[i]) == 1):
                 min_vertices.append(i + 1)
         return max(vertex for vertex in min_vertices)
 
     def remove_vertex(self,vertex,nl):
-        nl.pop(vertex - 1)
+        nl[vertex - 1] = None
         for neigh_list in nl:
-            if (neigh_list.count(vertex) > 0):
+            if (neigh_list != None and neigh_list.count(vertex) > 0):
                 neigh_list.remove(vertex)
         return nl
                 
